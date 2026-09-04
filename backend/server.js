@@ -10,9 +10,9 @@ app.use(express.json());
 
 const db = mysql.createPool({
   host: 'localhost',
-  user: 'root',
-  password: 'root', // Sesuaikan password MAMP kamu
-  database: 'it_asset_db',
+  user: 'pslid_auldatabase',
+  password: '#punyaAul', // Sesuaikan password MAMP kamu
+  database: 'pslid_it_asset_db',
   port: 8889,       // Sesuaikan port MAMP kamu
   waitForConnections: true,
   connectionLimit: 10,
