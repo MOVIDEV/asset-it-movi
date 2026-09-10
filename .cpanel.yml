@@ -1,0 +1,6 @@
+deployment:
+  tasks:
+    - export DeploymentPath=/home/pslid/public_html/itas.psl.id
+    - npm install
+    - npm run build
+    - /bin/cp -R dist/* $DeploymentPath
