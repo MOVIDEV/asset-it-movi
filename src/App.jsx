@@ -40,7 +40,7 @@ function App() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/login', loginForm);
+      const res = await axios.post('http://api-itas.psl.id/api/login', loginForm);
       if (res.data.success) {
         setIsLoggedIn(true);
         setUserRole(res.data.role); // Tangkap role dari backend ('admin' / 'user')
