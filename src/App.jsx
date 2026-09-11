@@ -54,7 +54,7 @@ function App() {
   const fetchAssets = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/assets');
+      const response = await axios.get('http://api-itas.psl.id/api/assets');
       setAssets(response.data);
     } catch (error) {
       console.error('Gagal mengambil data:', error);
@@ -87,13 +87,13 @@ function App() {
       };
 
       if (isEditing) {
-        await axios.put(`http://localhost:5000/api/assets/${editId}`, payload);
+        await axios.put(`http://api-itas.psl.id/api/assets/${editId}`, payload);
         alert('Aset berhasil diupdate!');
         setIsEditing(false);
         setEditId(null);
         setShowEditModal(false);
       } else {
-        await axios.post('http://localhost:5000/api/assets', payload);
+        await axios.post('http://api-itas.psl.id/api/assets', payload);
         alert('Aset berhasil ditambahkan!');
       }
 
@@ -128,7 +128,7 @@ function App() {
     }
     if (confirm('Yakin ingin menghapus aset ini?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/assets/${id}`);
+        await axios.delete(`http://api-itas.psl.id/api/assets/${id}`);
         fetchAssets();
       } catch (error) {
         alert('Gagal menghapus data.');
