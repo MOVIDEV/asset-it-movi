@@ -11,7 +11,7 @@ export default function Login({ loginForm,setActiveView, setLoginForm, handleLog
                           
                          </div>
         
-        <p className="text-sm text-gray-500 mb-6 text-center">Silakan login untuk akses manajemen aset</p>
+        <p className="text-sm text-gray-500 mb-6 text-center">Yuk login untuk akses manajemen aset</p>
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-600">Username</label>
