@@ -13,7 +13,7 @@ const db = mysql.createPool({
   user: 'pslid_auldatabase',
   password: '#punyaAul', // Sesuaikan password MAMP kamu
   database: 'pslid_it_asset_db',
-  port: 8889,       // Sesuaikan port MAMP kamu
+  port: 3306,       // Sesuaikan port MAMP kamu
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
