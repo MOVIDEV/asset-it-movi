@@ -10,7 +10,6 @@ import Assets from './pages/Assets';
 import DigitalAssets from './pages/DigitalAssets';
 import Register from './pages/Register';
 
-
 function App() {
   const [authView, setAuthView] = useState('login');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -40,7 +39,7 @@ function App() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://api-itas.psl.id/api/login', loginForm);
+      const res = await axios.post('https://api-itas.psl.id/api/login', loginForm);
       if (res.data.success) {
         setIsLoggedIn(true);
         setUserRole(res.data.role); // Tangkap role dari backend ('admin' / 'user')
@@ -54,7 +53,7 @@ function App() {
   const fetchAssets = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://api-itas.psl.id/api/assets');
+      const response = await axios.get('https://api-itas.psl.id/api/assets');
       setAssets(response.data);
     } catch (error) {
       console.error('Gagal mengambil data:', error);
@@ -87,13 +86,13 @@ function App() {
       };
 
       if (isEditing) {
-        await axios.put(`http://api-itas.psl.id/api/assets/${editId}`, payload);
+        await axios.put(`https://api-itas.psl.id/api/assets/${editId}`, payload);
         alert('Aset berhasil diupdate!');
         setIsEditing(false);
         setEditId(null);
         setShowEditModal(false);
       } else {
-        await axios.post('http://api-itas.psl.id/api/assets', payload);
+        await axios.post('https://api-itas.psl.id/api/assets', payload);
         alert('Aset berhasil ditambahkan!');
       }
 
@@ -128,7 +127,7 @@ function App() {
     }
     if (confirm('Yakin ingin menghapus aset ini?')) {
       try {
-        await axios.delete(`http://api-itas.psl.id/api/assets/${id}`);
+        await axios.delete(`https://api-itas.psl.id/api/assets/${id}`);
         fetchAssets();
       } catch (error) {
         alert('Gagal menghapus data.');
@@ -136,16 +135,12 @@ function App() {
     }
   };
 
-  // if (!isLoggedIn) {
-  //   return <Login loginForm={loginForm} setLoginForm={setLoginForm} handleLogin={handleLogin} />;
-  // }
-
   if (!isLoggedIn) {
-  if (authView === 'register') {
-    return <Register setActiveView={setAuthView} />;
+    if (authView === 'register') {
+      return <Register setActiveView={setAuthView} />;
+    }
+    return <Login loginForm={loginForm} setLoginForm={setLoginForm} handleLogin={handleLogin} setActiveView={setAuthView} />;
   }
-  return <Login loginForm={loginForm} setLoginForm={setLoginForm} handleLogin={handleLogin} setActiveView={setAuthView} />;
-}
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-between">
@@ -163,7 +158,7 @@ function App() {
 
           {activePage === 'assets' && (
             <Assets 
-              userRole={userRole} // <-- KIRIM ROLE KE KOMPONEN ASSETS
+              userRole={userRole} 
               assets={assets}
               loading={loading}
               formData={formData}
@@ -186,7 +181,7 @@ function App() {
           )}
 
           {activePage === 'digital' && (
-            <DigitalAssets userRole={userRole} /> // <-- KIRIM ROLE KE DIGITAL ASSETS
+            <DigitalAssets userRole={userRole} /> 
           )}
         </main>
       </div>
